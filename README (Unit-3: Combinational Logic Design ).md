@@ -727,5 +727,270 @@ Y_0 = S_3'S_2'S_1'S_0, \quad Y_1 = S_3'S_2'S_1S_0, \dots, Y_{15} = S_3S_2S_1S_0
 \]
 
 
+## 32. Design and Explain the Working of a 4-bit Parallel Adder
+
+### Design:
+A **4-bit Parallel Adder** adds two 4-bit binary numbers and produces a 4-bit sum along with a carry output. It uses **Full Adders** for each bit position.
+
+### Block Diagram:
+
+### Working:
+Each Full Adder adds two corresponding bits from the two 4-bit numbers and the carry from the previous bit. The final carry is the carry out of the most significant bit (MSB).
+
+### Truth Table:
+| A3 | A2 | A1 | A0 | B3 | B2 | B1 | B0 | Sum3 | Sum2 | Sum1 | Sum0 | Carry Out |
+|----|----|----|----|----|----|----|----|------|------|------|------|-----------|
+|  0 |  0 |  0 |  0 |  0 |  0 |  0 |  0 |   0  |   0  |   0  |   0  |     0     |
+|  1 |  0 |  0 |  0 |  1 |  0 |  0 |  0 |   0  |   0  |   0  |   1  |     0     |
+|  1 |  1 |  0 |  0 |  1 |  1 |  0 |  0 |   0  |   1  |   0  |   1  |     0     |
+| ... | ... | ... | ... | ... | ... | ... | ... |  ... |  ... |  ... |  ... |   ...     |
+
+### Mathematical Expression:
+For each Full Adder, the sum \( S \) and carry \( C \) are:
+\[
+S = A \oplus B \oplus C_{\text{in}}
+\]
+\[
+C_{\text{out}} = (A \cdot B) + (C_{\text{in}} \cdot (A \oplus B))
+\]
+
+---
+
+## 33. Define Magnitude Comparator. Design 2-bit Magnitude Comparator with Block Diagram, Truth Table, Circuit Diagram, and Logic Expression
+
+### Definition:
+A **Magnitude Comparator** compares two binary numbers and outputs the results indicating whether the first number is greater than, equal to, or less than the second.
+
+### Block Diagram:
+
+### Truth Table:
+
+| A1 | A0 | B1 | B0 | Greater (G) | Equal (E) | Less (L) |
+|----|----|----|----|-------------|-----------|----------|
+|  0 |  0 |  0 |  0 |      0      |     1     |    0     |
+|  1 |  0 |  0 |  0 |      1      |     0     |    0     |
+|  0 |  1 |  1 |  0 |      0      |     0     |    1     |
+|  1 |  1 |  1 |  1 |      0      |     1     |    0     |
+
+### Circuit Diagram:
+The circuit uses **AND**, **OR**, and **NOT** gates to compare the bits.
+
+### Logic Expression:
+\[
+G = A_1 \cdot \overline{B_1} + (A_1 \cdot A_0 \cdot \overline{B_1} \cdot \overline{B_0})
+\]
+\[
+E = (A_1 \cdot B_1) \cdot (A_0 \cdot B_0)
+\]
+\[
+L = \overline{A_1} \cdot B_1 + (\overline{A_1} \cdot \overline{A_0} \cdot B_1 \cdot B_0)
+\]
+
+---
+
+## 34. Parity Bit, Parity Generator, Parity Checker, Even Parity, Odd Parity
+
+### Use of Parity Bit:
+A **parity bit** is an extra bit added to data to make the number of 1s either even or odd. It is used for error detection in digital systems.
+
+### Definitions:
+- **Parity Generator**: A circuit that generates a parity bit (either even or odd) based on the input data.
+- **Parity Checker**: A circuit that checks whether the parity of the received data is correct.
+- **Even Parity**: The number of 1s in the data, including the parity bit, is even.
+- **Odd Parity**: The number of 1s in the data, including the parity bit, is odd.
+
+---
+
+## 35. Design 3-bit Odd Parity Generator with Block Diagram, Truth Table, Circuit Diagram, and Mathematical Expression
+
+### Block Diagram:
+
+### Truth Table:
+
+| A2 | A1 | A0 | Parity (P) |
+|----|----|----|------------|
+|  0 |  0 |  0 |     0      |
+|  0 |  0 |  1 |     1      |
+|  0 |  1 |  0 |     1      |
+|  0 |  1 |  1 |     0      |
+|  1 |  0 |  0 |     1      |
+|  1 |  0 |  1 |     0      |
+|  1 |  1 |  0 |     0      |
+|  1 |  1 |  1 |     1      |
+
+### Circuit Diagram:
+The **XOR** gate is used to generate the parity bit by performing an XOR operation on all input bits.
+
+### Mathematical Expression:
+\[
+P = A_2 \oplus A_1 \oplus A_0
+\]
+
+---
+
+## 36. Design 4-bit Odd Parity Checker with Block Diagram, Truth Table, Circuit Diagram, and Mathematical Expression
+
+### Block Diagram:
+
+### Truth Table:
+The parity bit (P) is checked for the odd parity condition.
+
+| A3 | A2 | A1 | A0 | Parity (P) | Error |
+|----|----|----|----|------------|-------|
+|  0 |  0 |  0 |  0 |     1      |   0   |
+|  0 |  0 |  0 |  1 |     0      |   1   |
+| ... | ... | ... | ... | ...        |  ...  |
+
+### Circuit Diagram:
+The circuit uses **XOR** gates to compare the parity of the data and parity bit.
+
+### Mathematical Expression:
+\[
+\text{Error} = (A_3 \oplus A_2 \oplus A_1 \oplus A_0 \oplus P)
+\]
+
+---
+
+## 37. Design 3-bit Even Parity Generator with Block Diagram, Truth Table, Circuit Diagram, and Mathematical Expression
+
+### Block Diagram:
+
+### Truth Table:
+The parity bit is calculated such that the total number of 1s, including the parity bit, is even.
+
+| A2 | A1 | A0 | Parity (P) |
+|----|----|----|------------|
+|  0 |  0 |  0 |     0      |
+|  0 |  0 |  1 |     0      |
+|  0 |  1 |  0 |     0      |
+|  0 |  1 |  1 |     1      |
+|  1 |  0 |  0 |     0      |
+|  1 |  0 |  1 |     1      |
+|  1 |  1 |  0 |     1      |
+|  1 |  1 |  1 |     0      |
+
+### Circuit Diagram:
+Similar to the odd parity generator, an **XOR** gate is used, but this time the parity bit is set to ensure the total count of 1s is even.
+
+### Mathematical Expression:
+\[
+P = A_2 \oplus A_1 \oplus A_0 \oplus 1
+\]
+
+---
+
+## 38. Design 4-bit Even Parity Checker with Block Diagram, Truth Table, Circuit Diagram, and Mathematical Expression
+
+### Block Diagram:
+
+### Truth Table:
+The parity bit (P) is checked for the even parity condition.
+
+| A3 | A2 | A1 | A0 | Parity (P) | Error |
+|----|----|----|----|------------|-------|
+|  0 |  0 |  0 |  0 |     0      |   0   |
+|  0 |  0 |  0 |  1 |     1      |   0   |
+| ... | ... | ... | ... | ...        |  ...  |
+
+### Circuit Diagram:
+The circuit uses **XOR** gates to check if the total number of 1s is even.
+
+### Mathematical Expression:
+\[
+\text{Error} = (A_3 \oplus A_2 \oplus A_1 \oplus A_0 \oplus P)
+\]
+
+# Digital Logic Functions Implementation Using PAL and PLA
+
+## 39. ROM (Read-Only Memory)
+
+### Definition:
+ROM is a type of non-volatile memory used to store data that is only read and not written. The data stored in ROM is permanent and cannot be easily modified.
+
+### Types of ROM:
+1. **MROM (Masked ROM):**
+   - Pre-programmed at the time of manufacturing.
+   - Cannot be altered after production.
+   - Used for permanent storage of firmware or software.
+
+2. **PROM (Programmable ROM):**
+   - Can be programmed by the user once.
+   - Once written, it cannot be altered.
+   - Commonly used for user-specific data storage.
+
+3. **EPROM (Erasable Programmable ROM):**
+   - Can be erased and reprogrammed using ultraviolet light.
+   - Typically used for storing firmware that may need to be updated.
+
+4. **EEPROM (Electrically Erasable Programmable ROM):**
+   - Can be electrically erased and reprogrammed.
+   - Slower write and erase times compared to EPROM.
+   - Used in applications where data needs to be updated occasionally.
+
+5. **Flash Memory:**
+   - A type of EEPROM that is faster and can store larger amounts of data.
+   - Widely used in USB drives, memory cards, and SSDs.
+
+---
+
+## 40. Programming Array Logic (PAL)
+
+### Definition:
+PAL is a programmable logic device (PLD) used to implement combinational logic circuits. It consists of a programmable AND array and a fixed OR array.
+
+### Block Diagram:
+1. **Inputs:** Multiple input lines (A, B, C, etc.).
+2. **Programmable AND Array:** The AND gates are programmable, meaning their connections can be configured to create various logic terms.
+3. **Fixed OR Array:** The OR gates combine the outputs from the AND gates to form the final logic functions.
+4. **Outputs:** The final result is available at the output lines.
+
+### Applications:
+- Used in custom logic circuits.
+- Employed in digital systems for implementing combinational logic.
+- Common in simple applications like state machines, address decoders, and signal processing.
+
+---
+
+## 41. Programming Logic Array (PLA)
+
+### Definition:
+A PLA is a programmable logic device that has both a programmable AND array and a programmable OR array. This flexibility allows it to implement any Boolean function.
+
+### Implementation of Functions Using PLA:
+- **F1(A, B, C) = ∑(3, 5, 6, 7):**
+   - Minterms: 3 = A'BC, 5 = AB'C, 6 = ABC', 7 = ABC.
+   - The AND array is programmed to generate these minterms, and the OR array combines them to form F1.
+
+- **F2(A, B, C) = ∑(0, 2, 4, 7):**
+   - Minterms: 0 = A'B'C', 2 = A'BC', 4 = AB'C', 7 = ABC.
+   - The AND array is programmed to generate these minterms, and the OR array combines them to form F2.
+
+---
+
+## 42. Implementing Functions Using PLA
+
+### Functions:
+- **F1(x, y, z) = ∑(0, 1, 4, 6):**
+   - Minterms: 0 = x'y'z', 1 = x'y'z, 4 = xy'z', 6 = xyz'.
+   - The AND array is programmed to generate these minterms, and the OR array combines them to form F1.
+
+- **F2(x, y, z) = ∑(2, 3, 4, 6, 7):**
+   - Minterms: 2 = x'yz', 3 = x'yz, 4 = xy'z', 6 = xyz', 7 = xyz.
+   - The AND array is programmed to generate these minterms, and the OR array combines them to form F2.
+
+- **F3(x, y, z) = ∑(0, 1, 2, 6):**
+   - Minterms: 0 = x'y'z', 1 = x'y'z, 2 = x'yz', 6 = xyz'.
+   - The AND array is programmed to generate these minterms, and the OR array combines them to form F3.
+
+### Block Diagram:
+1. **Inputs:** x, y, z.
+2. **Programmable AND Array:** Programs for the required minterms (F1, F2, F3).
+3. **Programmable OR Array:** Combines the minterms for the output functions F1, F2, and F3.
+
+---
+
+## Conclusion:
+This repository explains and demonstrates the implementation of combinational logic functions using Programmable Logic Devices like PAL and PLA. The logic functions are represented using minterms and implemented with the flexibility provided by PAL and PLA, enabling efficient custom logic design.
+
 
 
