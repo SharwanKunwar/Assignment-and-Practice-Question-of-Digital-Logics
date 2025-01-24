@@ -1,5 +1,7 @@
 # Digital Logic - BCA First Semester
 
+# Author : Sharwan jung kunwar
+
 ## Description:
 The Digital Logic course for the BCA first semester covers fundamental concepts of number systems, combinational and sequential logic, and the design of various logic circuits. The course equips students with the knowledge of how digital systems work, from basic arithmetic in different number systems to designing complex circuits for real-world applications.
 
