@@ -1,1 +1,0 @@
-# Assignment-and-Practice-Question-of-Digital-Logics
